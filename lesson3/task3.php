@@ -7,13 +7,13 @@ $adj= ["безграничного", "огромного", "головокруж
 $noun_rand = array_rand($noun, 3);
 $adj_rand = array_rand($adj, 3);
 
-$head = "Дорогой(ая) $name, от всего сердца поздравляем Вас с днем рождения, желаем ";
-
 for ($i = 0; $i < 3 ; $i++) {
     $wish[] = $adj[$adj_rand[$i]] ." " . $noun[$noun_rand[$i]];
 }
 
+$head = "Дорогой(ая) $name, от всего сердца поздравляем Вас с днем рождения, желаем ";
 $tail = implode(", ", $wish);
+
 $result = $head . $tail . "!";
 
 echo $result;
