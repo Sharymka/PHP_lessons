@@ -34,6 +34,7 @@ foreach ($students as $key => $group) {
     $average = $sum/count($group);
     $ave_grades[$key] = $average;
 }
+//print_r($ave_grades);
 
 $max = $ave_grades['ИТ20'];
 $result = [];
@@ -45,13 +46,13 @@ foreach ($ave_grades as $key => $grade) {
     }
 }
 
-echo "Максимальная успеваемость $result[$key] у группы $key" . PHP_EOL . "\n" ;
+echo "Максимальная успеваемость $result[$key] в группе $key" . PHP_EOL . "\n" ;
 
-///////////////////////////////////////////////////////////
+
 $list1 = [];
 $list2 = [];
 foreach ($students as $key1 => $group) {
-//    $list2[$key] = $list1;
+
     foreach ($group as $key2 => $grade) {
         if ($grade < 3) {
             $list1[$key2] = $grade;
