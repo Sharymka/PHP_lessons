@@ -38,6 +38,6 @@ class User
 
 }
 
-$user = new User('Иван', 'Ivan@mail.ru');
+$user = new User('Иван', 'Ivan@mail.ru', 34);
 echo $user->getUsername();
 //var_dump($user);

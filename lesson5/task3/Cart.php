@@ -29,36 +29,46 @@ class Cart
     }
 
     public function add(Product $product, int $count = 1) {
+
         // неправильно
         if(!in_array($product, $this->cartProducts)) {
-            $this->cartProducts[$product->getTitle()] = array('product'=> $product, 'count'=> $count);
+            $this->cartProducts[$product->getTitle()] = $product;
+            $product->setCount(1);
         } else {
-            $this->cartProducts[$product->getTitle()]['count'] ++;
+            $product->setCount($product->getCount() + 1);
         }
 
  }
 
     public function delete(Product $product) {
-       unset($this->cartProducts[$product->getTitle()]);
+        if(!in_array($product, $this->cartProducts)) {
+            return;
+        }
+
+        if(in_array($product, $this->cartProducts) && $product->getCount() === 1) {
+            unset($this->cartProducts[$product->getTitle()]);
+        } else {
+            $product->setCount($product->getCount() - 1);
+        }
     }
 
 
     public function countTotalPrice() {
         foreach ($this->cartProducts as $key => $cartProduct) {
-            $this->checkIsArray($cartProduct);
+            $this->totalPrice += $cartProduct->getPrice();
 
+                if(count($cartProduct->getComponents()) !== 0) {
+                    $this->checkIsThereAny($cartProduct->getComponents());
+                }
         }
     }
 
-    public function  checkIsArray($cartProduct) {
-        foreach ($cartProduct as $key => $product) {
-            if(is_object($product)) {
+    public function  checkIsThereAny($components) {
+        foreach ($components as $product) {
                 $this->totalPrice += $product->getPrice();
                 if(count($product->getComponents()) !== 0) {
-                    $this->checkIsArray($product->getComponents());
+                    $this->checkIsThereAny($product->getComponents());
                 }
-            }
-
         }
     }
 
@@ -66,7 +76,7 @@ class Cart
 
 
 }
-$product1 = new Product("Мышь", 1);
+$product1 = new Product("Мышь", 2);
 $product2 = new Product("Клавиатура", 2);
 $product3 = new Product("Батарейки", 3);
 
@@ -76,8 +86,15 @@ $product1->addToComponents($product3);
 $product1->addToComponents($product2);
 $product1->addToComponents($product1);
 
+
 $cart = new Cart();
 $cart->add($product1);
+$cart->add($product1);
+$cart->add($product1);
+//$cart->delete($product1);
+//$cart->delete($product1);
+//$cart->delete($product1);
+
 print_r($cart->getCartProducts());
 $cart->countTotalPrice();
-print_r($cart->getTotalPrice());
+print_r('Полная стоимость товаров = ' . $cart->getTotalPrice());

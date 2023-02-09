@@ -6,10 +6,12 @@ class Product
     private string $title;
     private float $price;
     private array $components;
+    private int $count;
 
     function __construct($title, $price){
         $this->title = $title;
         $this->price = $price;
+        $this->count = 0;
         $this->components = [];
 
     }
@@ -71,6 +73,14 @@ class Product
     public function getCount(): int
     {
         return $this->count;
+    }
+
+    /**
+     * @param int $count
+     */
+    public function setCount(int $count): void
+    {
+        $this->count = $count;
     }
 
 }
