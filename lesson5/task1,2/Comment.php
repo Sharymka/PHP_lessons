@@ -4,7 +4,7 @@ class Comment
 {
     private User $author;
     private Task $task;
-    private string $text;
+    private string $comment;
 
     /**
      * @return User
@@ -41,24 +41,24 @@ class Comment
     /**
      * @return string
      */
-    public function getText(): string
+    public function getComment(): string
     {
-        return $this->text;
+        return $this->comment;
     }
 
     /**
      * @param string $text
      */
-    public function setText(string $text): void
+    public function setComment(string $comment): void
     {
-        $this->text = $text;
+        $this->comment = $comment;
     }
 
 
-function __construct($author, $task, $text) {
+function __construct($author, $task, $comment) {
     $this->author = $author;
     $this->task = $task;
-    $this->text = $text;
+    $this->comment = $comment;
 
 }
 }

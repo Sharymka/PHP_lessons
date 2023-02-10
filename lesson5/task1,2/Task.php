@@ -3,7 +3,6 @@
 class Task
 {
     private string $description;
-
     private DateTime $dateCreated;
     private DateTime $dateUpdated;
     private DateTime $dateDone;
@@ -13,9 +12,11 @@ class Task
 
     private User $user;
 
-    function __construct($user) {
+    function __construct($user, $priority , $description) {
         $this->dateCreated = new DateTime();
         $this->user = $user;
+        $this->priority = $priority;
+        $this->description = $description;
         $this->comments = [];
     }
 

@@ -54,6 +54,6 @@ class User
 
 }
 
-$user = new User('Иван', 'Ivan@mail.ru', man, 34);
-echo $user->getUsername();
+//$user = new User('Иван', 'Ivan@mail.ru', 'man', 34);
+//echo $user->getUsername();
 //var_dump($user);
