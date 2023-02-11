@@ -18,6 +18,7 @@ $group = [
     <title><?= $title;?></title>
 </head>
 <body>
+
     <h1><?= $pageHeader;?></h1>
 <!--   <h1>--><?php //= $pageHeader;?><!--</h1>-->
 <!--   <h1>--><?php //= $userName;?><!--</h1>-->
@@ -25,10 +26,11 @@ $group = [
         <h1> Давно не заходили, <?= $userName ?></h1>
         <a href="?action=logout">Выйти</a>
    <?php else: ?>
-       <form method="post">
-           <input type="text" name="userName" placeholder="Введите ваше имя">
-           <button type="submit" value="Отправить">Отправить</button>
-       </form>
+       <a href="?controller=security">Войти</a>
+<!--       <form method="post">-->
+<!--           <input type="text" name="userName" placeholder="Введите ваше имя">-->
+<!--           <button type="submit" value="Отправить">Отправить</button>-->
+<!--       </form>-->
    <?php endif;?>
 
 </body>

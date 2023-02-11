@@ -1,5 +1,6 @@
 <?php
-require_once 'controller/securityController.php';
+/* @var $error string */
+/* @var $user \model\User */
 ?>
 <head>
     <meta charset="UTF-8">
@@ -31,16 +32,16 @@ require_once 'controller/securityController.php';
         <div class="row">
             <form method="post" class="sign-in-form mt-5 mt-md-5 col-lg-4 col-md-5 col-sm-8">
                 <h3>Авторизация</h3>
-                <div class="alert alert-danger  <?=$error === null ? 'visually-hidden' : ''?>">
+                <div class="alert alert-danger  <?= $error === null? 'visually-hidden' : ''?>">
                     <?= $error?>
                 </div>
                 <label for="username" class="visually-hidden">Имя пользователя</label>
                 <input type="text" id="username" name="username" class="form-control mt-3" placeholder="Имя пользователя" required="" autofocus="">
                 <label for="password" class="visually-hidden">Пароль</label>
                 <input type="password" id="password" name="password" class="form-control" placeholder="Пароль" required="">
-                <button class="w-75 btn btn-lg btn-primary mt-1" type="submit">Войти</button>
+                <button class="w-75 btn btn-lg btn-primary mt-1" type="submit" >Войти</button>
                 <div class="mt-3">
-                    <a href="/">Назад</a>
+                    <a href="/" class ="<?=$_SESSION['user'] !== null? '': 'visually-hidden'?>">Назад</a>
                 </div>
             </form>
         </div>

@@ -1,5 +1,5 @@
 <?php
-namespace model;
+
 require_once 'model/User.php';
 class UserProvider
 {
@@ -8,7 +8,7 @@ class UserProvider
     ];
 
     public function getByUsernameAngPassword(string $username, string $password): ?User {
-        $expectedPassword = $this -> $this->accounts[$username]?? null;
+        $expectedPassword = $this -> accounts[$username]?? null;
             if($expectedPassword === $password) {
                 return new User($username);
             }

@@ -1,12 +1,11 @@
 <?php
 
-namespace model;
 
 class User
 {
     private string $username;
 
-    function _construct($username) {
+    public function __construct(string $username) {
         $this->username = $username;
     }
 
