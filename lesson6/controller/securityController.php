@@ -2,7 +2,11 @@
 
 require_once 'model/UserProvider.php';
 
+$pageHeader = 'Добро пожаловать';
+
+
 $error = null;
+$user = null;
 if(isset($_POST['username'], $_POST['password'])) {
     ['username' => $username, 'password' => $password] = $_POST;
 
@@ -15,9 +19,6 @@ if(isset($_POST['username'], $_POST['password'])) {
         $_SESSION['user'] = $user;
     }
 
-//    if(isset($_SESSION['user'])) {
-//        header('Location:/');
-//    }
 }
 
 

@@ -1,6 +1,8 @@
 <?php
 /* @var $error string */
-/* @var $user \model\User */
+/* @var $user ?User */
+/* @var $pageHeader string */
+
 ?>
 <head>
     <meta charset="UTF-8">
@@ -41,7 +43,12 @@
                 <input type="password" id="password" name="password" class="form-control" placeholder="Пароль" required="">
                 <button class="w-75 btn btn-lg btn-primary mt-1" type="submit" >Войти</button>
                 <div class="mt-3">
-                    <a href="/" class ="<?=$_SESSION['user'] !== null? '': 'visually-hidden'?>">Назад</a>
+                    <h1> <?php if($user) :?>
+                        <p><?= $pageHeader .  ', ' .  $user->getUserName()?></p>
+                        <?php endif;?>
+                    </h1>
+                    <a href="/" class ="<?= !$user? 'visually-hidden': ''?>">Назад</a>
+                    <a href="?controller=taskName" class ="<?= !$user ? 'visually-hidden': ''?>">List</a>
                 </div>
             </form>
         </div>

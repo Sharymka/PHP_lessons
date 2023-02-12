@@ -4,6 +4,7 @@ $pageHeader = 'Добро пожаловать';
 
 if(isset($_GET['action']) && $_GET['action'] === 'logout') {
     unset($_SESSION['userName']);
+
 }
 
 $userName = null;
