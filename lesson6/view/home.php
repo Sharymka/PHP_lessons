@@ -2,14 +2,12 @@
 /* @var $pageHeader string */
 /* @var $userName string */
 
-
 $title = 'Наша первая страница';
 
-$group = [
-    "Виталий Иванов",
-    'Константин Печенькин',
-    'Екатерина Шубина'
-];
+//if(isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+//    $user = $_SESSION['user'];
+//    $userName = $user->getUserName();
+//}
 
 ?>
 <html>
@@ -20,13 +18,13 @@ $group = [
 <body>
 
     <h1><?= $pageHeader;?></h1>
-   <?php if(isset($userName)) : ?>
-        <h1> Давно не заходили, <?= $userName ?></h1>
-        <a href="?action=logout">Выйти</a>
-   <?php else: ?>
-       <a href="?controller=security">Войти</a>
-   <?php endif;?>
-
+       <h1> <?php if($userName) :?>
+               <p><?= $pageHeader .  ', ' .  $userName?></p>
+               <a href="?controller=security&action=logout">Выйти</a>
+               <a href="?controller=taskName">List</a>
+           <?php else: ?><a href="?controller=security">Войти</a>
+           <?php endif;?>
+       </h1>
 </body>
 </html>
 

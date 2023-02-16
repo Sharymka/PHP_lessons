@@ -7,13 +7,9 @@ class Task
 
     public int $id;
 
-
-    public function __construct($description) {
-        $this->description = $description;
-        $this->isDone = false;
-        $this->id = time();
-
-    }
+//    public function __construct($description) {
+//        $this->description = $description;
+//    }
 
 
     /**
@@ -46,6 +42,22 @@ class Task
     public function setIsDone(bool $isDone): void
     {
         $this->isDone = $isDone;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
 }
