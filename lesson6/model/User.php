@@ -5,7 +5,7 @@ class User
     private string $username;
     public string $name;
 
-
+    public int $id;
 
     public function __construct(string $username) {
         $this->username = $username;

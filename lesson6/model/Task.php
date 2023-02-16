@@ -7,11 +7,6 @@ class Task
 
     public int $id;
 
-//    public function __construct($description) {
-//        $this->description = $description;
-//    }
-
-
     /**
      * @return string
      */

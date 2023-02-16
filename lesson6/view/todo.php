@@ -1,15 +1,10 @@
 <?php
-/* @var $task Task */
+/* @var $taskListForUser Task */
 
-//$tasks = $_SESSION['tasks'] ?? [];
 ?>
-
-
-<?php if($task): ?>
+<?php if($taskListForUser): ?>
     <ol>
-        <?php foreach($tasks as $serializedTask):
-            $task = unserialize($serializedTask);?>
-
+        <?php foreach($taskListForUser as $task): ?>
             <li><?= $task->description ?></li>
 
             <?php if($task->isDone) : ?>
