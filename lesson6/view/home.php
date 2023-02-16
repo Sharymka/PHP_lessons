@@ -4,11 +4,6 @@
 
 $title = 'Наша первая страница';
 
-//if(isset($_SESSION['user']) && !empty($_SESSION['user'])) {
-//    $user = $_SESSION['user'];
-//    $userName = $user->getUserName();
-//}
-
 ?>
 <html>
 <head>

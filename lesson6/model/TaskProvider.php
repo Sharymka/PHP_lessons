@@ -23,51 +23,36 @@ class TaskProvider
         return self::$taskList;
     }
 
-   public function getUnDoneList(): ?Task
+   public function getList(int $userId): array
    {
-       $selectStatement =$this->pdo->prepare("SELECT * FROM tasks WHERE isDone = :isDone");
+       $selectStatement = $this->pdo->prepare("SELECT id, description, idUser, isDone  FROM tasks WHERE idUser = :idUser");
        $selectStatement->execute([
-           'isDone' => 1,
-       ]);;
-       return $selectStatement->fetchObject('Task') ?: null;
+           'idUser' => $userId
+       ]);
 
+       $tasks = [];
+       while ($task = $selectStatement->fetchObject(Task::class)) {
+           $tasks[] = $task;
+       }
 
+        return  $tasks;
    }
 
-//    public function checkIsDone($task): bool {
-//        if($task->getIsDone() === false) {
-//            return true;
-//        }
-//        return false;
-//    }
-
-    public function addTask(string $taskName, User $user)
+    public function addTask(string $taskName, int $userId): bool
     {
+        $query = "INSERT INTO tasks (description, idUser) VALUES (:description, :idUser)";
+        $insertStatement = $this->pdo->prepare($query);
+        return $insertStatement->execute(['description' => $taskName, 'idUser' => $userId]);
+    }
 
-        var_dump($user->getUsername());
-        $selectStatement = $this->pdo->prepare("SELECT id FROM users WHERE username = :username");
-        $selectStatement->execute([
-            'username' => $user->getUsername(),
-        ]);
+    public function completeTask(int $taskId) {
+        $query = "UPDATE tasks SET isDone = true WHERE id = :id ";
+        $statement = $this->pdo->prepare($query);
+        $params = [
+            'id' => $taskId,
+        ];
 
-        $selectedResult = $selectStatement->fetch() ?: null;
-        var_dump($selectedResult['id']);
-
-
-        $insertStatement = $this->pdo->prepare("INSERT INTO tasks (description, idUser) VALUES (:description, :idUser)");
-        $insertStatement->execute([
-            'description' => $taskName,
-            'idUser' => $selectedResult['id'],
-        ]);
-
-        $selectStatement2 = $this->pdo->prepare("SELECT description, id, idUser, isDone FROM tasks WHERE description = :description AND idUser = :idUser");
-        $selectStatement2->execute([
-            'description' => $taskName,
-            'idUser' => $selectedResult['id'],
-        ]);
-        $task = $selectStatement2->fetchObject('Task') ?: null;
-
-        return $task;
+        $statement->execute($params);
     }
 }
 

@@ -12,7 +12,6 @@ if(isset($_POST['username'], $_POST['password'])) {
 
     $userProvider = new UserProvider($pdo);
     $user = $userProvider->getByUsernameAngPassword($_POST['username'], $_POST['password']);
-    var_dump($user);
     if ($user === null) {
         $error = "Пользователь с указанными учетными данными не найден";
     } else {
