@@ -5,7 +5,6 @@ class TaskProvider
 
     private  PDO $pdo;
 
-    private static array $taskList = [];
 
     /**
      * @param PDO $pdo
@@ -13,14 +12,6 @@ class TaskProvider
     public function __construct(PDO $pdo)
     {
         $this->pdo = $pdo;
-    }
-
-    /**
-     * @return array
-     */
-    public static function getTaskList(): array
-    {
-        return self::$taskList;
     }
 
    public function getList(int $userId): array
@@ -37,6 +28,21 @@ class TaskProvider
 
         return  $tasks;
    }
+
+    public function getUndoneList(int $userId): array
+    {
+        $selectStatement = $this->pdo->prepare("SELECT id, description, idUser, isDone  FROM tasks WHERE isDone = :isDone");
+        $selectStatement->execute([
+            'isDone' => 0
+        ]);
+
+        $tasks = [];
+        while ($task = $selectStatement->fetchObject(Task::class)) {
+            $tasks[] = $task;
+        }
+
+        return  $tasks;
+    }
 
     public function addTask(string $taskName, int $userId): bool
     {

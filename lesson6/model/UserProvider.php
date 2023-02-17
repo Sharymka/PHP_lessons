@@ -2,19 +2,8 @@
 
 class UserProvider
 {
-//    private array $accounts = [
-//        'geekbrains' => 'password123',
-//    ];
-
   private  PDO $pdo;
 
-//    public function getByUsernameAngPassword(string $username, string $password): ?User {
-//        $expectedPassword = $this -> accounts[$username]?? null;
-//            if($expectedPassword === $password) {
-//                return new User($username);
-//            }
-//        return null;
-//    }
     /**
      * @param PDO $pdo
      */
@@ -28,14 +17,15 @@ class UserProvider
         return $statement->execute([
             'name' => $user->getName(),
             'username' => $user->getUserName(),
-            'password'=> $password]);
+            'password'=> md5($password)
+        ]);
     }
 
     public function getByUsernameAngPassword(string $username, string $password) {
         $statement = $this->pdo->prepare("SELECT id, name, username FROM users WHERE username = :username AND password = :password LIMIT 1");
         $statement->execute([
             'username' => $username,
-            'password' => $password,
+            'password' => md5($password),
         ]);
 
         return $statement->fetchObject(User::class, [$username])?: null;

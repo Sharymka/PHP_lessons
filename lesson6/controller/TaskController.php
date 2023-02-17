@@ -1,15 +1,16 @@
 <?php
 $pdo = require 'db.php';
+
 ['user' => $user] = $_SESSION;
 $taskProvider = new TaskProvider($pdo);
 $task = null;
 
-// Добавить новую задачу, если в параметрах запроса POST есть taskName
-if(isset($_POST['taskName']) && !empty($_POST['taskName'])) {
-    ['taskName' => $taskName] = $_POST;
+// Добавить новую задачу, если в параметрах запроса POST есть task
+if(isset($_POST['task']) && !empty($_POST['task'])) {
+    ['task' => $taskName] = $_POST;
     $taskProvider->addTask($taskName, $user->id);
     $taskListForUser = $taskProvider->getList($user->id);
-    $_POST['taskName'] = null;
+    $_POST['task'] = null;
 }
 
 // GET запрос с параметром taskId и complete будет маркировать нужную задачу как "выполненную"

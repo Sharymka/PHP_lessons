@@ -2,14 +2,12 @@
 
 class User
 {
-    private string $username;
     public string $name;
-
+    private string $username;
     public int $id;
 
     public function __construct(string $username) {
         $this->username = $username;
-
     }
 
     /**

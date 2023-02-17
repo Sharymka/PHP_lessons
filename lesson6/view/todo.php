@@ -1,8 +1,9 @@
 <?php
 /* @var $taskListForUser Task */
 
+
 ?>
-<?php if($taskListForUser): ?>
+<?php if($taskListForUser?? null): ?>
     <ol>
         <?php foreach($taskListForUser as $task): ?>
             <li><?= $task->description ?></li>
@@ -12,7 +13,7 @@
                     DONE
                 </span>
             <?php else : ?>
-                <a href=<?= "?controller=taskName&taskId=" . $task->id . "&complete=true" ?>>
+                <a href=<?= "?controller=task&taskId=" . $task->id . "&complete=true" ?>>
                     MARK COMPLETE
                 </a>
             <?php endif;?>
@@ -28,7 +29,7 @@
 <a href="?action=logout">Выйти</a>
 <a href="/">Главная</a>
 <form method="post" class="post">
-    <input type="=text" name="taskName" placeholder="Добавьте задачу">
+    <input type="=text" name="task" placeholder="Добавьте задачу">
     <button type="submit">Отправить</button>
 </form>
 
