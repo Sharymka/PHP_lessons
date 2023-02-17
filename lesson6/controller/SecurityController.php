@@ -3,9 +3,15 @@
 require_once 'model/UserProvider.php';
 $pdo = require 'db.php';
 $pageHeader = 'Добро пожаловать';
-
-
 $error = null;
+
+if(isset($_GET['action']) && $_GET['action'] === 'logout') {
+    unset($_SESSION['user']);
+    unset($_SESSION['tasks']);
+    header('Location: index.php');
+    die();
+}
+
 if(isset($_POST['username'], $_POST['password'], $_GET['action']) && $_GET['action'] === 'signin') {
     ['username' => $username, 'password' => $password] = $_POST;
     $userProvider = new UserProvider($pdo);

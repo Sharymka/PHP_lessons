@@ -1,13 +1,5 @@
 <?php
 $pageHeader = 'Добро пожаловать';
-
-if(isset($_GET['action']) && $_GET['action'] === 'logout') {
-    unset($_SESSION['user']);
-    unset($_SESSION['tasks']);
-    header('Location: index.php');
-    die();
-}
-
 $userName = null;
 
 if(isset($_SESSION['user'])) {
