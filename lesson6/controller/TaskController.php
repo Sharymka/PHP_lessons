@@ -16,9 +16,7 @@ if(isset($_POST['task']) && !empty($_POST['task'])) {
 // GET запрос с параметром taskId и complete будет маркировать нужную задачу как "выполненную"
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['taskId']) && boolval($_GET['complete']) === true) {
     $taskId = $_GET['taskId'];
-
     $taskProvider->completeTask($taskId);
-
     $taskListForUser = $taskProvider->getList($user->id);
 }
 

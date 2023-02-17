@@ -3,7 +3,6 @@
 /* @var $user User */
 
 $title = 'Наша первая страница';
-$user = $_SESSION['user']?? null;
 
 ?>
 <html>
@@ -14,7 +13,7 @@ $user = $_SESSION['user']?? null;
 <body>
 
     <h1><?= $pageHeader;?></h1>
-       <h1> <?php if($user) :?>
+       <h1> <?php if($user?? null) :?>
                <p><?= $pageHeader .  ', ' .  $user->getName()?></p>
                <a href="?controller=security&action=logout">Выйти</a>
                <a href="?controller=task">List</a>

@@ -5,6 +5,7 @@ $pdo = require 'db.php';
 $pageHeader = 'Добро пожаловать';
 $error = null;
 
+//выход пользователя из системы
 if(isset($_GET['action']) && $_GET['action'] === 'logout') {
     unset($_SESSION['user']);
     unset($_SESSION['tasks']);
@@ -12,6 +13,7 @@ if(isset($_GET['action']) && $_GET['action'] === 'logout') {
     die();
 }
 
+//вход зарегистрированного пользователя
 if(isset($_POST['username'], $_POST['password'], $_GET['action']) && $_GET['action'] === 'signin') {
     ['username' => $username, 'password' => $password] = $_POST;
     $userProvider = new UserProvider($pdo);
@@ -24,7 +26,7 @@ if(isset($_POST['username'], $_POST['password'], $_GET['action']) && $_GET['acti
     }
 
 }
-
+//регистрация пользователя
 if(isset($_POST['name'], $_POST['username'], $_POST['password'], $_GET['action']) && $_GET['action'] === 'signup') {
     ['name' => $name, 'username' => $username, 'password' => $password] = $_POST;
     $userProvider = new UserProvider($pdo);
@@ -45,7 +47,7 @@ if(isset($_POST['name'], $_POST['username'], $_POST['password'], $_GET['action']
 }
 
 
-
+//переход на страницу регистрации
 if (isset($_GET['action']) && $_GET['action'] === 'signup') {
     require 'view/signup.php';
     die();
