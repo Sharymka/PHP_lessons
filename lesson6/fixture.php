@@ -17,9 +17,5 @@ $pdo->exec('CREATE TABLE tasks (
   isDone TINYINT NOT NULL DEFAULT 0
 )');
 
-$user = new User( 'admin');
-$user->setName('Stepan');
-$userProvider = new UserProvider($pdo);
-$userProvider->registerUser($user, '123');
 
 
