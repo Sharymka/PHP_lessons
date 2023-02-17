@@ -1,15 +1,11 @@
 <?php
-/* @var $task Task */
+/* @var $taskListForUser Task */
 
-$tasks = $_SESSION['tasks'] ?? [];
+
 ?>
-
-
-<?php if(isset($tasks)): ?>
+<?php if($taskListForUser?? null): ?>
     <ol>
-        <?php foreach($tasks as $serializedTask):
-            $task = unserialize($serializedTask);?>
-
+        <?php foreach($taskListForUser as $task): ?>
             <li><?= $task->description ?></li>
 
             <?php if($task->isDone) : ?>
@@ -17,7 +13,7 @@ $tasks = $_SESSION['tasks'] ?? [];
                     DONE
                 </span>
             <?php else : ?>
-                <a href=<?= "?controller=taskName&taskId=" . $task->id . "&complete=true" ?>>
+                <a href=<?= "?controller=task&taskId=" . $task->id . "&complete=true" ?>>
                     MARK COMPLETE
                 </a>
             <?php endif;?>
@@ -25,8 +21,15 @@ $tasks = $_SESSION['tasks'] ?? [];
     </ol>
 <?php endif;?>
 
-<form method="post">
-    <input type="=text" name="taskName" placeholder="Добавьте задачу">
+<style>
+    .post {
+        margin-top: 10px;
+    }
+</style>
+<a href="?action=logout">Выйти</a>
+<a href="/">Главная</a>
+<form method="post" class="post">
+    <input type="=text" name="task" placeholder="Добавьте задачу">
     <button type="submit">Отправить</button>
 </form>
 

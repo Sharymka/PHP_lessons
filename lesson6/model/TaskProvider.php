@@ -1,33 +1,64 @@
 <?php
-require 'model/Task.php';
 
 class TaskProvider
 {
 
-    private static array $taskList = [];
+    private  PDO $pdo;
+
 
     /**
-     * @return array
+     * @param PDO $pdo
      */
-    public static function getTaskList(): array
+    public function __construct(PDO $pdo)
     {
-        return self::$taskList;
+        $this->pdo = $pdo;
     }
 
-    public function getUnDoneList(): array {
-       return  array_filter(self::$taskList, 'checkIsDone');
-    }
+   public function getList(int $userId): array
+   {
+       $selectStatement = $this->pdo->prepare("SELECT id, description, idUser, isDone  FROM tasks WHERE idUser = :idUser");
+       $selectStatement->execute([
+           'idUser' => $userId
+       ]);
 
-    public function checkIsDone($task): bool {
-        if($task->getIsDone() === false) {
-            return true;
+       $tasks = [];
+       while ($task = $selectStatement->fetchObject(Task::class)) {
+           $tasks[] = $task;
+       }
+
+        return  $tasks;
+   }
+
+    public function getUndoneList(int $userId): array
+    {
+        $selectStatement = $this->pdo->prepare("SELECT id, description, idUser, isDone  FROM tasks WHERE isDone = :isDone");
+        $selectStatement->execute([
+            'isDone' => 0
+        ]);
+
+        $tasks = [];
+        while ($task = $selectStatement->fetchObject(Task::class)) {
+            $tasks[] = $task;
         }
-        return false;
+
+        return  $tasks;
     }
 
-    public static function addTask(string $taskName): Task {
-//        echo 'Я добавляю' . $taskName;
-        return new Task($taskName);
+    public function addTask(string $taskName, int $userId): bool
+    {
+        $query = "INSERT INTO tasks (description, idUser) VALUES (:description, :idUser)";
+        $insertStatement = $this->pdo->prepare($query);
+        return $insertStatement->execute(['description' => $taskName, 'idUser' => $userId]);
+    }
+
+    public function completeTask(int $taskId) {
+        $query = "UPDATE tasks SET isDone = true WHERE id = :id ";
+        $statement = $this->pdo->prepare($query);
+        $params = [
+            'id' => $taskId,
+        ];
+
+        $statement->execute($params);
     }
 }
 

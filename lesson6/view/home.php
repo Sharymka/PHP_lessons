@@ -1,15 +1,8 @@
 <?php
 /* @var $pageHeader string */
-/* @var $userName string */
-
+/* @var $user User */
 
 $title = 'Наша первая страница';
-
-$group = [
-    "Виталий Иванов",
-    'Константин Печенькин',
-    'Екатерина Шубина'
-];
 
 ?>
 <html>
@@ -20,13 +13,13 @@ $group = [
 <body>
 
     <h1><?= $pageHeader;?></h1>
-   <?php if(isset($userName)) : ?>
-        <h1> Давно не заходили, <?= $userName ?></h1>
-        <a href="?action=logout">Выйти</a>
-   <?php else: ?>
-       <a href="?controller=security">Войти</a>
-   <?php endif;?>
-
+       <h1> <?php if($user?? null) :?>
+               <p><?= $pageHeader .  ', ' .  $user->getName()?></p>
+               <a href="?controller=security&action=logout">Выйти</a>
+               <a href="?controller=task">List</a>
+           <?php else: ?><a href="?controller=security&action=signin">Войти</a>
+           <?php endif;?>
+       </h1>
 </body>
 </html>
 
