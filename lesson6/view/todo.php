@@ -1,8 +1,9 @@
 <?php
 /* @var $taskListForUser Task */
 
+
 ?>
-<?php if($taskListForUser): ?>
+<?php if($taskListForUser?? null): ?>
     <ol>
         <?php foreach($taskListForUser as $task): ?>
             <li><?= $task->description ?></li>

@@ -1,9 +1,7 @@
 <?php
 /* @var $error string */
 /* @var $user ?User */
-/* @var $pageHeader string */
-
-?>
+/* @var $pageHeader string */?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,12 +35,14 @@
                 <div class="alert alert-danger  <?= $error === null? 'visually-hidden' : ''?>">
                     <?= $error?>
                 </div>
-                <label for="username" class="visually-hidden">Имя пользователя</label>
-                <input type="text" id="username" name="username" class="form-control mt-3" placeholder="Имя пользователя" required="" autofocus="">
+                <label for="name" class="visually-hidden">Имя</label>
+                <input type="text" id="name" name="name" class="form-control mt-3" placeholder="Введите ваше имя" required="" autofocus
+                <label for="username" class="visually-hidden"></label>
+                <input type="text" id="username" name="username" class="form-control mt-3" placeholder="Логин" required="" autofocus="">
                 <label for="password" class="visually-hidden">Пароль</label>
                 <input type="password" id="password" name="password" class="form-control" placeholder="Пароль" required="">
-                <button class="w-75 btn btn-lg btn-primary mt-1" type="submit" >Войти</button>
-                <a  href="?controller=security&action=signup" >Зарегистрироваться</a>
+<!--                <button class="w-75 btn btn-lg btn-primary mt-1" type="submit" >Войти</button>-->
+                <button class="w-75 btn btn-lg btn-primary mt-1" type="submit" >Зарегистрироваться</button>
                 <div class="mt-3">
                     <a href="/" class ="<?= !$user? 'visually-hidden': ''?>">Назад</a>
                 </div>

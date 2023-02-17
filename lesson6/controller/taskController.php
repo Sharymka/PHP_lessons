@@ -1,5 +1,6 @@
 <?php
 $pdo = require 'db.php';
+
 ['user' => $user] = $_SESSION;
 $taskProvider = new TaskProvider($pdo);
 $task = null;

@@ -2,19 +2,8 @@
 
 class UserProvider
 {
-//    private array $accounts = [
-//        'geekbrains' => 'password123',
-//    ];
-
   private  PDO $pdo;
 
-//    public function getByUsernameAngPassword(string $username, string $password): ?User {
-//        $expectedPassword = $this -> accounts[$username]?? null;
-//            if($expectedPassword === $password) {
-//                return new User($username);
-//            }
-//        return null;
-//    }
     /**
      * @param PDO $pdo
      */
