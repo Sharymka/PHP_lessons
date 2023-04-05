@@ -1,6 +1,6 @@
 <?php
 
-class User
+class User1
 {
     private string $username;
     private string $email;
