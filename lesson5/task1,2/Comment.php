@@ -55,7 +55,7 @@ class Comment
     }
 
 
-function __construct($author, $task, $comment) {
+function __construct($task, $comment) {
     $this->author = $author;
     $this->task = $task;
     $this->comment = $comment;
