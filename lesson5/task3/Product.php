@@ -5,6 +5,8 @@ class Product
 {
     private string $title;
     private float $price;
+
+    private float $componentsPrice = 0;
     private array $components;
     private int $count;
 
@@ -25,7 +27,15 @@ class Product
         }
 
         $this->components[] = $product;
+
+        $this->componentsPrice($product->getPrice());
     }
+
+    private function componentsPrice($price) {
+        $this->componentsPrice += $price; 
+    }
+
+
 
     /**
      * @return string

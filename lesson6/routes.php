@@ -1,6 +1,6 @@
 <?php
 return [
-    'home' => 'controller/homeController.php',
-    'security' => 'controller/securityController.php',
-    'taskName'=>'controller/taskController.php'
+    'home' => 'controller/HomeController.php',
+    'security' => 'controller/SecurityController.php',
+    'task'=>'controller/TaskController.php'
 ];
