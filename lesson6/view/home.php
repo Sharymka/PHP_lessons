@@ -5,7 +5,6 @@
 
 
 $title = 'Наша первая страница';
-//$date = new DateTime();
 ?>
 <html>
 <head>
@@ -15,8 +14,9 @@ $title = 'Наша первая страница';
 <body>
 <h1><?= $date2;?></h1>
     <h1><?= $pageHeader;?></h1>
-       <h1> <?php if($user?? null) :?>
-               <p><?= $pageHeader .  ', ' .  $user->getName()?></p>
+       <h1> <?php if($user?? null):?>
+
+               <p><?= $pageHeader .  ', ' . $user->getName() ?></p>
                <a href="?controller=security&action=logout">Выйти</a>
                <a href="?controller=task">List</a>
            <?php else: ?><a href="?controller=security&action=signin">Войти</a>

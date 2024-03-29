@@ -3,6 +3,8 @@
 
 
 ?>
+<a href="?action=logout">Выйти</a>
+<a href="/">Главная</a>
 <?php if($taskListForUser?? null): ?>
     <ol>
         <?php foreach($taskListForUser as $task): ?>
@@ -26,10 +28,8 @@
         margin-top: 10px;
     }
 </style>
-<a href="?action=logout">Выйти</a>
-<a href="/">Главная</a>
 <form method="post" class="post">
-    <input type="=text" name="task" placeholder="Добавьте задачу">
+    <input type="text" name="task" placeholder="Добавьте задачу">
     <button type="submit">Отправить</button>
 </form>
 

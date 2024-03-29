@@ -3,13 +3,16 @@
 class Task
 {
     public string $description;
-    public bool $isDone;
+    public bool $isDone = false;
 
     public int $id;
+    public int $idUser;
 
     /**
      * @return string
      */
+
+
     public function getDescription(): string
     {
         return $this->description;

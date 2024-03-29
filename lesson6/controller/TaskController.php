@@ -5,6 +5,11 @@ $pdo = require 'db.php';
 $taskProvider = new TaskProvider($pdo);
 $task = null;
 
+// POST запрос без парраметров возвращает список задач авторизованного пользователя
+if($_SERVER['REQUEST_METHOD'] === 'POST' && $user || $_SERVER['REQUEST_METHOD'] === 'GET' && $user ) {
+    $taskListForUser = $taskProvider->getList($user->id);
+}
+
 // Добавить новую задачу, если в параметрах запроса POST есть task
 if(isset($_POST['task']) && !empty($_POST['task'])) {
     ['task' => $taskName] = $_POST;
