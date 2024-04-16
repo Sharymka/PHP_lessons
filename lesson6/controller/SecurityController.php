@@ -43,8 +43,6 @@ if(isset($_POST['name'], $_POST['username'], $_POST['password'], $_GET['action']
     $user = $userProvider->getByUsernameAngPassword($username, $password);
     if ($user !== null) {
         $error = "Пользователь с указанными учетными данными уже существует";
-
-        die();
     } else {
         $user = new User($username);
         $user->setName($name);

@@ -10,15 +10,10 @@ $pdo = require 'db.php';
 
 session_start();
 
-//throw new Exception('Проверочная ошибка');
-
 $controller = $_GET['controller'] ?? 'home';
 
 $routes = require 'routes.php';
 require_once $routes[$controller];
-
-
-
 
 
 
